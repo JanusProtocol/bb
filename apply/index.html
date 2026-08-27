@@ -60,13 +60,13 @@
         .form-group {
             margin-bottom: 18px;
         }
-        label {
+        label.form-label {
             display: block;
             margin-bottom: 8px;
             font-size: 14px;
             font-weight: 500;
         }
-        input, select {
+        input[type="text"], input[type="number"], select {
             width: 100%;
             padding: 14px;
             border-radius: 10px;
@@ -79,6 +79,29 @@
         }
         input:focus, select:focus {
             border-color: var(--primary);
+        }
+        /* Checkbox Styling */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #2A2A2A;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
         }
         .btn {
             background-color: var(--primary);
@@ -94,7 +117,7 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 20px;
             transition: background-color 0.2s ease;
         }
         .btn:hover { background-color: #20BA56; }
@@ -108,17 +131,38 @@
         <p class="subtitle">გთხოვთ უპასუხოთ კითხვებს და დაგვიკავშირდეთ WhatsApp-ში.</p>
 
         <div class="form-group">
-            <label for="name">სახელი და გვარი</label>
+            <label class="form-label" for="name">სახელი და გვარი</label>
             <input type="text" id="name" placeholder="მაგ: გიორგი ბერიძე" required>
         </div>
 
         <div class="form-group">
-            <label for="age">ასაკი</label>
+            <label class="form-label" for="age">ასაკი</label>
             <input type="number" id="age" placeholder="მიუთითეთ ასაკი" required>
         </div>
 
+        <!-- ენების ჩექბოქსების ბლოკი -->
         <div class="form-group">
-            <label for="windows">რამდენად კარგად ფლობთ Windows-ს?</label>
+            <label class="form-label">რომელ ენებს ფლობთ?</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item">
+                    <input type="checkbox" name="language" value="ქართული"> ქართული
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="language" value="ინგლისური"> ინგლისური
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="language" value="რუსული"> რუსული
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="other_lang">სხვა ენა (ჩაწერეთ)</label>
+            <input type="text" id="other_lang" placeholder="მაგ: გერმანული, თურქული...">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="windows">რამდენად კარგად ფლობთ Windows-ს?</label>
             <select id="windows">
                 <option value="საბაზისო დონე">საბაზისო დონე</option>
                 <option value="საშუალო დონე">საშუალო დონე</option>
@@ -127,7 +171,7 @@
         </div>
 
         <div class="form-group">
-            <label for="playstation">გქონიათ თუ არა შეხება PlayStation-თან?</label>
+            <label class="form-label" for="playstation">გქონიათ თუ არა შეხება PlayStation-თან?</label>
             <select id="playstation">
                 <option value="დიახ">დიახ</option>
                 <option value="არა">არა</option>
@@ -135,7 +179,7 @@
         </div>
 
         <div class="form-group">
-            <label for="service_exp">გიმუშავიათ თუ არა მომსახურების სფეროში?</label>
+            <label class="form-label" for="service_exp">გიმუშავიათ თუ არა მომსახურების სფეროში?</label>
             <select id="service_exp">
                 <option value="დიახ">დიახ</option>
                 <option value="არა">არა</option>
@@ -153,7 +197,7 @@
         </div>
 
         <div class="form-group">
-            <label for="shifts_accepted">მისაღებია თქვენთვის სამუშაო დროები?</label>
+            <label class="form-label" for="shifts_accepted">მისაღებია თქვენთვის სამუშაო დროები?</label>
             <select id="shifts_accepted">
                 <option value="დიახ, მისაღებია">დიახ, მისაღებია</option>
                 <option value="არა">არა</option>
@@ -172,6 +216,16 @@
         function applyViaWhatsApp() {
             const name = document.getElementById('name').value.trim();
             const age = document.getElementById('age').value.trim();
+            
+            // არჩეული ენების შეგროვება
+            const checkedLangs = Array.from(document.querySelectorAll('input[name="language"]:checked'))
+                                     .map(cb => cb.value);
+            const otherLang = document.getElementById('other_lang').value.trim();
+            if (otherLang) {
+                checkedLangs.push(otherLang);
+            }
+            const languagesText = checkedLangs.length > 0 ? checkedLangs.join(', ') : 'არ არის მითითებული';
+
             const windows = document.getElementById('windows').value;
             const playstation = document.getElementById('playstation').value;
             const serviceExp = document.getElementById('service_exp').value;
@@ -182,12 +236,12 @@
                 return;
             }
 
-            // ჩაანაცვლეთ თქვენი WhatsApp ნომრით (მაგ: 9955XXXXXXXX)
             const phoneNumber = "995555554343"; 
 
             const message = `*ახალი განაცხადი ვაკანსიაზე* 📄\n\n` +
                             `*სახელი:* ${name}\n` +
                             `*ასაკი:* ${age}\n` +
+                            `*ენები:* ${languagesText}\n` +
                             `*Windows-ის ცოდნა:* ${windows}\n` +
                             `*PlayStation-თან შეხება:* ${playstation}\n` +
                             `*გამოცდილება მომსახურებაში:* ${serviceExp}\n` +
