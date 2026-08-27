@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ka">
 <head>
     <meta charset="UTF-8">
-    <!-- Crucial for mobile scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Job Vacancy | Apply Now</title>
+    <title>ვაკანსია | შეავსეთ განაცხადი</title>
     <style>
         :root {
             --primary: #25D366; /* WhatsApp Green */
@@ -27,7 +26,7 @@
         }
         .card {
             background: var(--card-bg);
-            max-width: 450px;
+            max-width: 480px;
             width: 100%;
             padding: 32px 24px;
             border-radius: 16px;
@@ -42,12 +41,24 @@
         p.subtitle {
             color: var(--text-muted);
             text-align: center;
-            margin: 0 0 24px 0;
+            margin: 0 0 20px 0;
             font-size: 14px;
             line-height: 1.5;
         }
+        .info-box {
+            background: #262626;
+            border-left: 4px solid var(--primary);
+            padding: 14px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .info-box strong {
+            color: var(--primary);
+        }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         label {
             display: block;
@@ -62,7 +73,7 @@
             border: 1px solid var(--border);
             background: #2A2A2A;
             color: var(--text-main);
-            font-size: 16px; /* 16px prevents iOS from auto-zooming */
+            font-size: 16px;
             box-sizing: border-box;
             outline: none;
         }
@@ -83,7 +94,7 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: background-color 0.2s ease;
         }
         .btn:hover { background-color: #20BA56; }
@@ -93,34 +104,59 @@
 <body>
 
     <div class="card">
-        <h1>We are Hiring!</h1>
-        <p class="subtitle">Answer a few quick questions below to apply instantly via WhatsApp.</p>
+        <h1>გვაქვს ვაკანსია!</h1>
+        <p class="subtitle">გთხოვთ უპასუხოთ კითხვებს და დაგვიკავშირდეთ WhatsApp-ში.</p>
 
         <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="E.g. Giorgi M." required>
+            <label for="name">სახელი და გვარი</label>
+            <input type="text" id="name" placeholder="მაგ: გიორგი ბერიძე" required>
         </div>
 
         <div class="form-group">
-            <label for="age">Age</label>
-            <input type="number" id="age" placeholder="18+" required>
+            <label for="age">ასაკი</label>
+            <input type="number" id="age" placeholder="მიუთითეთ ასაკი" required>
         </div>
 
         <div class="form-group">
-            <label for="experience">Do you have relevant experience?</label>
-            <select id="experience">
-                <option value="No experience, but fast learner">No, but I learn fast</option>
-                <option value="Under 1 year">Under 1 year</option>
-                <option value="1+ years experience">1+ years experience</option>
+            <label for="windows">რამდენად კარგად ფლობთ Windows-ს?</label>
+            <select id="windows">
+                <option value="საბაზისო დონე">საბაზისო დონე</option>
+                <option value="საშუალო დონე">საშუალო დონე</option>
+                <option value="მაღალი / პროფესიონალური">მაღალი / პროფესიონალური</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="availability">Can you work night shifts?</label>
-            <select id="availability">
-                <option value="Yes, anytime">Yes, anytime</option>
-                <option value="Days only">Days only</option>
-                <option value="Nights only">Nights only</option>
+            <label for="playstation">გქონიათ თუ არა შეხება PlayStation-თან?</label>
+            <select id="playstation">
+                <option value="დიახ">დიახ</option>
+                <option value="არა">არა</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="service_exp">გიმუშავიათ თუ არა მომსახურების სფეროში?</label>
+            <select id="service_exp">
+                <option value="დიახ">დიახ</option>
+                <option value="არა">არა</option>
+            </select>
+        </div>
+
+        <!-- პირობების ბლოკი -->
+        <div class="info-box">
+            📌 <strong>სამუშაო პირობები:</strong><br>
+            • <strong>ანაზღაურება:</strong> 60 ₾ (ცვლაში)<br>
+            • <strong>ცვლები:</strong> 12:00 - 20:00 ან 20:00 - 04:00<br>
+            • <strong>გრაფიკი:</strong> 2 დღე მუშაობა, 3-ე დღე დასვენება<br>
+            • <strong>ბონუსები:</strong> მოქმედებს საბონუსე სისტემა<br>
+            • <strong>ფასდაკლება:</strong> თქვენთვის თამაშზე მოქმედებს 50% ფასდაკლება, ხოლო თქვენს მეგობრებზე - 30%
+        </div>
+
+        <div class="form-group">
+            <label for="shifts_accepted">მისაღებია თქვენთვის სამუშაო დროები?</label>
+            <select id="shifts_accepted">
+                <option value="დიახ, მისაღებია">დიახ, მისაღებია</option>
+                <option value="არა">არა</option>
             </select>
         </div>
 
@@ -128,32 +164,35 @@
             <svg viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
             </svg>
-            Apply via WhatsApp
+            გაგზავნა WhatsApp-ში
         </button>
     </div>
 
     <script>
         function applyViaWhatsApp() {
-            // 1. Collect form data
             const name = document.getElementById('name').value.trim();
             const age = document.getElementById('age').value.trim();
-            const experience = document.getElementById('experience').value;
-            const availability = document.getElementById('availability').value;
+            const windows = document.getElementById('windows').value;
+            const playstation = document.getElementById('playstation').value;
+            const serviceExp = document.getElementById('service_exp').value;
+            const shiftsAccepted = document.getElementById('shifts_accepted').value;
 
-            // 2. Validate empty fields
             if (!name || !age) {
-                alert("Please fill in your name and age.");
+                alert("გთხოვთ შეავსოთ სახელი და ასაკი.");
                 return;
             }
 
-            // 3. YOUR WHATSAPP NUMBER (Include country code, no + or spaces)
-            // Example for Georgia (+995): 995555123456
+            // ჩაანაცვლეთ თქვენი WhatsApp ნომრით (მაგ: 9955XXXXXXXX)
             const phoneNumber = "995XXXXXXXXX"; 
 
-            // 4. Format the message
-            const message = `*New Job Application* 📄\n\n*Name:* ${name}\n*Age:* ${age}\n*Experience:* ${experience}\n*Night Shifts:* ${availability}`;
+            const message = `*ახალი განაცხადი ვაკანსიაზე* 📄\n\n` +
+                            `*სახელი:* ${name}\n` +
+                            `*ასაკი:* ${age}\n` +
+                            `*Windows-ის ცოდნა:* ${windows}\n` +
+                            `*PlayStation-თან შეხება:* ${playstation}\n` +
+                            `*გამოცდილება მომსახურებაში:* ${serviceExp}\n` +
+                            `*სამუშაო გრაფიკი მისაღებია:* ${shiftsAccepted}`;
 
-            // 5. Encode for URL and redirect
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.location.href = whatsappURL;
         }
