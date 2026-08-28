@@ -823,6 +823,367 @@
         .badge-dot {
             animation: pulse 2s infinite;
         }
+
+        /* ---------- Responsibilities Modal ---------- */
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            background: rgba(0, 0, 0, .72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 16px;
+
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-overlay.fade-in {
+            opacity: 1;
+        }
+
+        .modal {
+            position: relative;
+
+            width: 100%;
+            max-width: 560px;
+            max-height: 88vh;
+
+            border-radius: 22px;
+            border: 1px solid rgba(139, 92, 246, .25);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(18, 21, 32, .97),
+                    rgba(12, 14, 22, .98)
+                );
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, .55),
+                0 0 0 1px rgba(255, 255, 255, .04),
+                0 0 60px rgba(139, 92, 246, .08);
+
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+
+            transform: translateY(24px) scale(.97);
+            transition: transform .35s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        .modal-overlay.fade-in .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-head {
+            padding: 24px 24px 18px;
+
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(139, 92, 246, .08),
+                    rgba(37, 240, 120, .03)
+                );
+        }
+
+        .modal-head-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 10px;
+
+            padding: 5px 12px;
+            border-radius: 999px;
+
+            background: rgba(139, 92, 246, .12);
+            border: 1px solid rgba(139, 92, 246, .22);
+
+            color: #c9b8ff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .modal-head h3 {
+            margin: 0 0 6px;
+
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #ffffff 20%,
+                    #c9b8ff 60%,
+                    #7cffac 100%
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .modal-head p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .modal-body {
+            overflow-y: auto;
+            padding: 20px 24px;
+
+            flex: 1;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, .1);
+            border-radius: 10px;
+        }
+
+        .resp-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .resp-item:last-child {
+            border-bottom: none;
+        }
+
+        .resp-icon {
+            flex: 0 0 auto;
+
+            display: grid;
+            place-items: center;
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 11px;
+
+            background: rgba(37, 240, 120, .08);
+            border: 1px solid rgba(37, 240, 120, .15);
+
+            font-size: 16px;
+        }
+
+        .resp-content h4 {
+            margin: 0 0 4px;
+
+            font-size: 13px;
+            font-weight: 700;
+            color: #e8ecf3;
+        }
+
+        .resp-content p {
+            margin: 0;
+
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .modal-training {
+            margin: 8px 0 0;
+            padding: 14px 16px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(34, 211, 238, .06),
+                    rgba(139, 92, 246, .06)
+                );
+
+            border: 1px solid rgba(34, 211, 238, .15);
+        }
+
+        .modal-training p {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #b0d4e8;
+        }
+
+        .modal-training strong {
+            color: var(--cyan);
+        }
+
+        .modal-foot {
+            padding: 18px 24px 22px;
+
+            border-top: 1px solid rgba(255, 255, 255, .06);
+
+            background: rgba(0, 0, 0, .18);
+        }
+
+        .modal-confirm-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            cursor: pointer;
+
+            margin-bottom: 16px;
+
+            font-size: 13px;
+            color: #c8ccd5;
+
+            user-select: none;
+        }
+
+        .modal-confirm-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+
+            flex: 0 0 20px;
+
+            margin: 0;
+            padding: 0;
+
+            accent-color: var(--green);
+
+            cursor: pointer;
+
+            border-radius: 6px;
+        }
+
+        .modal-btn-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-btn-cancel {
+            flex: 1;
+            min-height: 50px;
+
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 13px;
+
+            background: rgba(255, 255, 255, .04);
+            color: var(--muted);
+
+            font: inherit;
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .modal-btn-cancel:hover {
+            background: rgba(255, 255, 255, .07);
+            color: var(--text);
+        }
+
+        .modal-btn-send {
+            flex: 2;
+            min-height: 50px;
+
+            border: 0;
+            border-radius: 13px;
+
+            color: #031008;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7cffac,
+                    var(--green)
+                );
+
+            font: inherit;
+            font-size: 14px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow: 0 8px 24px rgba(37, 240, 120, .16);
+
+            transition:
+                transform .2s,
+                box-shadow .2s,
+                filter .2s,
+                opacity .2s;
+        }
+
+        .modal-btn-send:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+            filter: grayscale(.5);
+        }
+
+        .modal-btn-send:not(:disabled):hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(37, 240, 120, .28);
+            filter: brightness(1.05);
+        }
+
+        .modal-btn-send svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 520px) {
+            .modal {
+                max-height: 92vh;
+                border-radius: 18px;
+            }
+
+            .modal-head {
+                padding: 20px 18px 16px;
+            }
+
+            .modal-body {
+                padding: 16px 18px;
+            }
+
+            .modal-foot {
+                padding: 14px 18px 18px;
+            }
+
+            .resp-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
@@ -1219,6 +1580,98 @@
         </section>
 
 
+        <!-- RESPONSIBILITIES MODAL -->
+        <div class="modal-overlay" id="respModal">
+            <div class="modal">
+
+                <div class="modal-head">
+                    <div class="modal-head-icon">📋 მოვალეობები</div>
+                    <h3>ძირითადი მოვალეობები</h3>
+                    <p>ინტერნეტ კაფის ადმინისტრატორის ძირითადი მოვალეობები მოიცავს მომხმარებლებთან ურთიერთობას, კომპიუტერული სისტემების მეთვალყურეობას, სალაროს მართვასა და წესრიგის დაცვას.</p>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="resp-item">
+                        <div class="resp-icon">👋</div>
+                        <div class="resp-content">
+                            <h4>მომხმარებლების მომსახურება</h4>
+                            <p>სტუმრების მიღება, თავისუფალი კომპიუტერების გამოყოფა და წარმოქმნილი პრობლემების მოგვარება.</p>
+                        </div>
+                    </div>
+
+                    <div class="resp-item">
+                        <div class="resp-icon">🖥️</div>
+                        <div class="resp-content">
+                            <h4>სისტემური მართვა</h4>
+                            <p>მომხმარებლების დროის აღრიცხვა, მართვა და კომპიუტერული სესიების გააქტიურება/გათიშვა მარტივი პროგრამით.</p>
+                        </div>
+                    </div>
+
+                    <div class="resp-item">
+                        <div class="resp-icon">🎮</div>
+                        <div class="resp-content">
+                            <h4>თამაშების განახლება</h4>
+                            <p>თამაშების რეგულარული განახლება და მეთვალყურეობა Steam, Epic Games Launcher და სხვა პლატფორმების მეშვეობით.</p>
+                        </div>
+                    </div>
+
+                    <div class="resp-item">
+                        <div class="resp-icon">💰</div>
+                        <div class="resp-content">
+                            <h4>სალარო და ფინანსები</h4>
+                            <p>გადახდების მიღება და სალაროს აპარატთან მუშაობა.</p>
+                        </div>
+                    </div>
+
+                    <div class="resp-item">
+                        <div class="resp-icon">🔧</div>
+                        <div class="resp-content">
+                            <h4>ტექნიკური მხარდაჭერა</h4>
+                            <p>მარტივი ტექნიკური ხარვეზების აღმოფხვრა (კომპიუტერის გადატვირთვა, ინტერნეტის ან პერიფერიული მოწყობილობების შემოწმება) და სერიოზული პრობლემების ტექნიკურ მენეჯერთან გადამისამართება.</p>
+                        </div>
+                    </div>
+
+                    <div class="resp-item">
+                        <div class="resp-icon">🧹</div>
+                        <div class="resp-content">
+                            <h4>წესრიგი და სისუფთავე</h4>
+                            <p>სამუშაო მაგიდების, კლავიატურების, მაუსებისა და ყურსასმენების სისუფთავის შენარჩუნება, დარბაზში სიმშვიდისა და წესების დაცვა.</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-training">
+                        <p>📚 <strong>სწავლება/სტაჟირება:</strong> ადგილზე გათვალისწინებულია 1-კვირიანი შესწავლისა და მომზადების პერიოდი, სადაც დეტალურად გასწავლიან ყველა აღნიშნულ პროცესს.</p>
+                    </div>
+
+                </div>
+
+                <div class="modal-foot">
+
+                    <label class="modal-confirm-label">
+                        <input type="checkbox" id="respConfirm" onchange="toggleSendBtn()">
+                        ვადასტურებ, რომ გავეცანი მოვალეობებს და ვეთანხმები
+                    </label>
+
+                    <div class="modal-btn-row">
+
+                        <button class="modal-btn-cancel" onclick="closeModal()">
+                            გაუქმება
+                        </button>
+
+                        <button class="modal-btn-send" id="modalSendBtn" disabled onclick="sendToWhatsApp()">
+                            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.05-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                            გაგზავნა
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
         <footer class="footer">
             Game Lounge Dinamo © 2026
         </footer>
@@ -1228,6 +1681,11 @@
 
     <script>
 
+        /* ---------- Collected form data ---------- */
+        let formData = {};
+
+        /* ---------- Step 1: validate & open modal ---------- */
+
         function applyViaWhatsApp() {
 
             const name =
@@ -1235,7 +1693,6 @@
 
             const age =
                 document.getElementById('age').value.trim();
-
 
             if (!name || !age) {
 
@@ -1252,7 +1709,6 @@
                 return;
             }
 
-
             const checkedLangs =
                 Array.from(
                     document.querySelectorAll(
@@ -1260,61 +1716,110 @@
                     )
                 ).map(cb => cb.value);
 
-
             const otherLang =
                 document
                     .getElementById('other_lang')
                     .value
                     .trim();
 
-
             if (otherLang) {
                 checkedLangs.push(otherLang);
             }
 
-
-            const languagesText =
-                checkedLangs.length
+            formData = {
+                name,
+                age,
+                languages: checkedLangs.length
                     ? checkedLangs.join(', ')
-                    : 'არ არის მითითებული';
+                    : 'არ არის მითითებული',
+                windows: document.getElementById('windows').value,
+                playstation: document.getElementById('playstation').value,
+                serviceExp: document.getElementById('service_exp').value,
+                shiftsAccepted: document.getElementById('shifts_accepted').value
+            };
+
+            openModal();
+        }
 
 
-            const windows =
-                document.getElementById('windows').value;
+        /* ---------- Step 2: modal controls ---------- */
 
-            const playstation =
-                document.getElementById('playstation').value;
+        function openModal() {
+            const overlay = document.getElementById('respModal');
+            const confirm = document.getElementById('respConfirm');
+            const sendBtn = document.getElementById('modalSendBtn');
 
-            const serviceExp =
-                document.getElementById('service_exp').value;
+            confirm.checked = false;
+            sendBtn.disabled = true;
 
-            const shiftsAccepted =
-                document.getElementById('shifts_accepted').value;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    overlay.classList.add('fade-in');
+                });
+            });
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('respModal');
+
+            overlay.classList.remove('fade-in');
+            document.body.style.overflow = '';
+
+            setTimeout(() => {
+                overlay.classList.remove('active');
+            }, 300);
+        }
+
+        function toggleSendBtn() {
+            const checked = document.getElementById('respConfirm').checked;
+            document.getElementById('modalSendBtn').disabled = !checked;
+        }
+
+        /* Close on overlay click */
+        document.getElementById('respModal')
+            .addEventListener('click', function (e) {
+                if (e.target === this) closeModal();
+            });
+
+        /* Close on ESC */
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                const overlay = document.getElementById('respModal');
+                if (overlay.classList.contains('active')) {
+                    closeModal();
+                }
+            }
+        });
 
 
-            const phoneNumber =
-                "995555554343";
+        /* ---------- Step 3: send to WhatsApp ---------- */
 
+        function sendToWhatsApp() {
+
+            const phoneNumber = "995555554343";
 
             const message =
                 `*ახალი განაცხადი — Game Lounge Dinamo* 🎮\n` +
                 `*პოზიცია:* გეიმინგ ადმინისტრატორი\n\n` +
 
-                `*სახელი:* ${name}\n` +
-                `*ასაკი:* ${age}\n` +
-                `*ენები:* ${languagesText}\n` +
-                `*Windows:* ${windows}\n` +
-                `*PlayStation:* ${playstation}\n` +
-                `*მომსახურების გამოცდილება:* ${serviceExp}\n` +
-                `*გრაფიკი მისაღებია:* ${shiftsAccepted}\n\n` +
+                `*სახელი:* ${formData.name}\n` +
+                `*ასაკი:* ${formData.age}\n` +
+                `*ენები:* ${formData.languages}\n` +
+                `*Windows:* ${formData.windows}\n` +
+                `*PlayStation:* ${formData.playstation}\n` +
+                `*მომსახურების გამოცდილება:* ${formData.serviceExp}\n` +
+                `*გრაფიკი მისაღებია:* ${formData.shiftsAccepted}\n\n` +
 
                 `📍 Game Lounge Dinamo`;
-
 
             const whatsappURL =
                 `https://wa.me/${phoneNumber}?text=` +
                 encodeURIComponent(message);
 
+            closeModal();
 
             window.location.href = whatsappURL;
         }
@@ -1323,3 +1828,4 @@
 
 </body>
 </html>
+
