@@ -418,8 +418,6 @@
         transition: .2s ease;
       }
 
-      .input::placeholder { color: #778198; }
-
       .input:hover,
       select:hover { border-color: rgba(255,255,255,.22); }
 
@@ -742,6 +740,40 @@
         .actions { grid-template-columns: 1fr; }
         .map { height: 170px; }
       }
+      /* Keep both branch choices within the usable mobile viewport. */
+      @media (max-width: 600px) {
+        .branch-picker {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          min-height: 460px;
+          height: 100vh;
+          height: 100svh;
+          padding: max(20px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+        }
+        .branch-picker .eyebrow { flex: 0 0 auto; margin-bottom: 12px; font-size: 10px; }
+        .branch-picker h1 { flex: 0 0 auto; font-size: clamp(28px, 7.5vw, 42px); line-height: 1.15; letter-spacing: -1.4px; }
+        .branch-picker .hero-copy { flex: 0 0 auto; margin-top: 10px; font-size: 12px; line-height: 1.5; }
+        .branch-options { flex: 1; min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+        .branch-option { flex-direction: row; min-width: 0; min-height: 0; border-radius: 18px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        .branch-photo-wrap { width: 36%; height: 100%; aspect-ratio: auto; }
+        .branch-info { flex: 1; min-width: 0; align-content: center; gap: 12px; padding: 16px 14px; }
+        .branch-option strong { font-size: clamp(16px, 4.5vw, 22px); line-height: 1.25; }
+        .branch-metro { font-size: 11px; line-height: 1.6; }
+        .branch-info > span:last-child { font-size: 11px; line-height: 1.5; }
+      }
+      @media (max-height: 500px) and (orientation: landscape) {
+        .branch-picker { display: flex; flex-direction: column; height: 100svh; min-height: 320px; padding: 16px 20px; }
+        .branch-picker .eyebrow { margin-bottom: 8px; font-size: 10px; }
+        .branch-picker h1 { font-size: 28px; line-height: 1.15; }
+        .branch-picker .hero-copy { margin-top: 6px; font-size: 12px; }
+        .branch-options { flex: 1; min-height: 0; margin-top: 14px; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); }
+        .branch-option { flex-direction: row; min-height: 0; }
+        .branch-photo-wrap { width: 34%; height: 100%; aspect-ratio: auto; }
+        .branch-info { flex: 1; min-width: 0; align-content: center; gap: 8px; padding: 12px; }
+        .branch-option strong { font-size: 16px; line-height: 1.25; }
+        .branch-metro, .branch-info > span:last-child { font-size: 10px; line-height: 1.5; }
+      }
     </style>
   </head>
 
@@ -847,7 +879,7 @@
       }
 
       const branches = {
-        dinamo: { name: 'Game Lounge Dinamo', photo: 'https://i.ibb.co/gFDc7Jfq/ANWiy9-Qdpr-Rf-A-Anx-I7-Z826-LZ4v-To-Q1b-XZGWnsqq1df-BVc-UJZo9xv-KFwc0c-Ilw-Q4-Zo9e-Fg-QOe5-UIJg-FQKws-PN.png', metro: 'მეტრო წერეთელი', phone: '995555554343', location: 'Game Lounge Dinamo', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1252.034156626337!2d44.78264969256767!3d41.72362920554676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404473716bd268d5%3A0x8c190995c370043c!2sGame%20Lounge%20Dinamo!5e0!3m2!1sen!2sge!4v1793036036255!5m2!1sen!2sge' },
+        dinamo: { name: 'Game Lounge Dinamo', photo: 'https://i.ibb.co/gFDc7Jfq/ANWiy9-Qdpr-Rf-A-Anx-I7-Z826-LZ4v-To-Q1b-XZGWnsqq1df-BVc-UJZo9xv-KFwc0c-Ilw-Q4-Zo9e-Fg-QOe5-UIJg-FQKws-PN.png', metro: 'მეტრო წერეთელი', phone: '995555554343', location: 'დავით ყიფიანის 2', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1252.034156626337!2d44.78264969256767!3d41.72362920554676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404473716bd268d5%3A0x8c190995c370043c!2sGame%20Lounge%20Dinamo!5e0!3m2!1sen!2sge!4v1793036036255!5m2!1sen!2sge' },
         saburtalo: { name: 'Game Lounge Saburtalo', photo: 'https://i.ibb.co/21pgnZF3/ANWiy9-Q6o-Dm7c0-EZghbf35q-Yy-XHd44kg2-Pld-S1a-DQwre-G7-QJXm-WXv8f-AAxl8-Y62o1-Vo-Fhem-z-Cqnel-g4dg-X3-Gnuw.png', metro: 'მეტრო ტექნიკური უნივერსიტეტი', phone: '995555557373', location: 'სიმონ ჩიქოვანის 4', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.2465867574883!2d44.77425217658964!3d41.71519757559703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4044732bca128b59%3A0x3d17d630da571709!2sGame%20Lounge!5e0!3m2!1sen!2sge!4v1791728509270!5m2!1sen!2sge' }
       };
 
@@ -860,10 +892,10 @@
           student: '',
           languages: [],
           otherLanguage: '',
-          windows: 'საბაზისო დონე',
-          playstation: 'დიახ',
-          serviceExp: 'დიახ',
-          shiftsAccepted: 'დიახ, მისაღებია'
+          windows: '',
+          playstation: '',
+          serviceExp: '',
+          shiftsAccepted: ''
         });
 
         const [errors, setErrors] = useState({});
@@ -887,7 +919,11 @@
           const next = {
             name: !data.name.trim(),
             age: !data.age || Number(data.age) < 16 || Number(data.age) > 99,
-            student: !['კი', 'არა'].includes(data.student)
+            student: !['კი', 'არა'].includes(data.student),
+            windows: !data.windows,
+            playstation: !data.playstation,
+            serviceExp: !data.serviceExp,
+            shiftsAccepted: !data.shiftsAccepted
           };
 
           setErrors(next);
@@ -1134,7 +1170,6 @@
                   <div className="form-grid">
                     {field('სახელი და გვარი', 'name', {
                       type: 'text',
-                      placeholder: 'მაგ: გიორგი ბერიძე',
                       autoComplete: 'name'
                     })}
 
@@ -1142,13 +1177,12 @@
                       type: 'number',
                       min: '16',
                       max: '99',
-                      placeholder: 'მიუთითეთ ასაკი'
                     })}
 
                     <div className="field-group full">
                       <label className="field-label" htmlFor="student">სტუდენტი</label>
                       <select id="student" value={data.student} onChange={e => update('student', e.target.value)} aria-invalid={Boolean(errors.student)} aria-describedby={errors.student ? 'student-error' : undefined} required>
-                        <option value="" disabled>აირჩიეთ პასუხი</option>
+                        <option value="" disabled></option>
                         <option>კი</option>
                         <option>არა</option>
                       </select>
@@ -1180,7 +1214,6 @@
                         className="input"
                         value={data.otherLanguage}
                         onChange={e => update('otherLanguage', e.target.value)}
-                        placeholder="მაგ: გერმანული, თურქული..."
                       />
                     </div>
 
@@ -1192,11 +1225,16 @@
                         id="windows"
                         value={data.windows}
                         onChange={e => update('windows', e.target.value)}
+                        aria-invalid={Boolean(errors.windows)}
+                        aria-describedby={errors.windows ? 'windows-error' : undefined}
+                        required
                       >
+                        <option value="" disabled></option>
                         <option>საბაზისო დონე</option>
                         <option>საშუალო დონე</option>
                         <option>მაღალი / პროფესიონალური</option>
                       </select>
+                      {errors.windows && <small id="windows-error" style={{ color: '#ff9aac' }}>გთხოვ, აირჩიე პასუხი.</small>}
                     </div>
 
                     <div className="field-group">
@@ -1207,10 +1245,15 @@
                         id="playstation"
                         value={data.playstation}
                         onChange={e => update('playstation', e.target.value)}
+                        aria-invalid={Boolean(errors.playstation)}
+                        aria-describedby={errors.playstation ? 'playstation-error' : undefined}
+                        required
                       >
+                        <option value="" disabled></option>
                         <option>დიახ</option>
                         <option>არა</option>
                       </select>
+                      {errors.playstation && <small id="playstation-error" style={{ color: '#ff9aac' }}>გთხოვ, აირჩიე პასუხი.</small>}
                     </div>
 
                     <div className="field-group">
@@ -1221,10 +1264,15 @@
                         id="serviceExp"
                         value={data.serviceExp}
                         onChange={e => update('serviceExp', e.target.value)}
+                        aria-invalid={Boolean(errors.serviceExp)}
+                        aria-describedby={errors.serviceExp ? 'serviceExp-error' : undefined}
+                        required
                       >
+                        <option value="" disabled></option>
                         <option>დიახ</option>
                         <option>არა</option>
                       </select>
+                      {errors.serviceExp && <small id="serviceExp-error" style={{ color: '#ff9aac' }}>გთხოვ, აირჩიე პასუხი.</small>}
                     </div>
 
                     <div className="field-group">
@@ -1235,10 +1283,15 @@
                         id="shiftsAccepted"
                         value={data.shiftsAccepted}
                         onChange={e => update('shiftsAccepted', e.target.value)}
+                        aria-invalid={Boolean(errors.shiftsAccepted)}
+                        aria-describedby={errors.shiftsAccepted ? 'shiftsAccepted-error' : undefined}
+                        required
                       >
+                        <option value="" disabled></option>
                         <option>დიახ, მისაღებია</option>
                         <option>არა</option>
                       </select>
+                      {errors.shiftsAccepted && <small id="shiftsAccepted-error" style={{ color: '#ff9aac' }}>გთხოვ, აირჩიე პასუხი.</small>}
                     </div>
                   </div>
 
