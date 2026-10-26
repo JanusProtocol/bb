@@ -697,7 +697,8 @@
       @media (prefers-reduced-motion: reduce) { .branch-option, .branch-photo { transition: none; } .branch-option:hover .branch-photo { transform: none; } }
       .branch-option strong { font: 800 23px Inter, sans-serif; }
       .branch-info > span:last-child { color: var(--green); font-size: 13px; }
-      .branch-metro { color: var(--muted); font-size: 14px; line-height: 1.6; }
+      .branch-metro { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+      .metro-logo { display: block; width: 20px; height: 20px; flex: 0 0 20px; object-fit: contain; }
       .branch-option:hover { border-color: var(--green); }
       button:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
       .branch-change { display: block; padding: 0 14px; margin-bottom: 20px; }
@@ -756,6 +757,7 @@
         .branch-picker .hero-copy { flex: 0 0 auto; margin-top: 10px; font-size: 12px; line-height: 1.5; }
         .branch-options { flex: 1; min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
         .branch-option { flex-direction: row; min-width: 0; min-height: 0; border-radius: 18px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        .branch-photo { object-fit: cover; }
         .branch-photo-wrap { width: 36%; height: 100%; aspect-ratio: auto; }
         .branch-info { flex: 1; min-width: 0; align-content: center; gap: 12px; padding: 16px 14px; }
         .branch-option strong { font-size: clamp(16px, 4.5vw, 22px); line-height: 1.25; }
@@ -769,6 +771,7 @@
         .branch-picker .hero-copy { margin-top: 6px; font-size: 12px; }
         .branch-options { flex: 1; min-height: 0; margin-top: 14px; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); }
         .branch-option { flex-direction: row; min-height: 0; }
+        .branch-photo { object-fit: cover; }
         .branch-photo-wrap { width: 34%; height: 100%; aspect-ratio: auto; }
         .branch-info { flex: 1; min-width: 0; align-content: center; gap: 8px; padding: 12px; }
         .branch-option strong { font-size: 16px; line-height: 1.25; }
@@ -879,8 +882,8 @@
       }
 
       const branches = {
-        dinamo: { name: 'Game Lounge Dinamo', photo: 'https://i.ibb.co/gFDc7Jfq/ANWiy9-Qdpr-Rf-A-Anx-I7-Z826-LZ4v-To-Q1b-XZGWnsqq1df-BVc-UJZo9xv-KFwc0c-Ilw-Q4-Zo9e-Fg-QOe5-UIJg-FQKws-PN.png', metro: 'მეტრო წერეთელი', phone: '995555554343', location: 'დავით ყიფიანის 2', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1252.034156626337!2d44.78264969256767!3d41.72362920554676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404473716bd268d5%3A0x8c190995c370043c!2sGame%20Lounge%20Dinamo!5e0!3m2!1sen!2sge!4v1793036036255!5m2!1sen!2sge' },
-        saburtalo: { name: 'Game Lounge Saburtalo', photo: 'https://i.ibb.co/21pgnZF3/ANWiy9-Q6o-Dm7c0-EZghbf35q-Yy-XHd44kg2-Pld-S1a-DQwre-G7-QJXm-WXv8f-AAxl8-Y62o1-Vo-Fhem-z-Cqnel-g4dg-X3-Gnuw.png', metro: 'მეტრო ტექნიკური უნივერსიტეტი', phone: '995555557373', location: 'სიმონ ჩიქოვანის 4', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.2465867574883!2d44.77425217658964!3d41.71519757559703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4044732bca128b59%3A0x3d17d630da571709!2sGame%20Lounge!5e0!3m2!1sen!2sge!4v1791728509270!5m2!1sen!2sge' }
+        dinamo: { name: 'Game Lounge Dinamo', photo: 'https://i.ibb.co/gFDc7Jfq/ANWiy9-Qdpr-Rf-A-Anx-I7-Z826-LZ4v-To-Q1b-XZGWnsqq1df-BVc-UJZo9xv-KFwc0c-Ilw-Q4-Zo9e-Fg-QOe5-UIJg-FQKws-PN.png', metro: 'წერეთელ', phone: '995555554343', location: 'დავით ყიფიანის 2', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1252.034156626337!2d44.78264969256767!3d41.72362920554676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404473716bd268d5%3A0x8c190995c370043c!2sGame%20Lounge%20Dinamo!5e0!3m2!1sen!2sge!4v1793036036255!5m2!1sen!2sge' },
+        saburtalo: { name: 'Game Lounge Saburtalo', photo: 'https://i.ibb.co/21pgnZF3/ANWiy9-Q6o-Dm7c0-EZghbf35q-Yy-XHd44kg2-Pld-S1a-DQwre-G7-QJXm-WXv8f-AAxl8-Y62o1-Vo-Fhem-z-Cqnel-g4dg-X3-Gnuw.png', metro: 'ტექნიკური უნივერსიტეტი', phone: '995555557373', location: 'სიმონ ჩიქოვანის 4', map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.2465867574883!2d44.77425217658964!3d41.71519757559703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4044732bca128b59%3A0x3d17d630da571709!2sGame%20Lounge!5e0!3m2!1sen!2sge!4v1791728509270!5m2!1sen!2sge' }
       };
 
       function App() {
@@ -999,7 +1002,7 @@
                       <span className="branch-photo-wrap"><img className={`branch-photo ${id === 'dinamo' ? 'branch-photo-fill' : ''}`} src={item.photo} alt={item.name + ' — ინტერიერი'} decoding="async" /></span>
                       <span className="branch-info">
                       <strong>{item.name}</strong>
-                      <span className="branch-metro">🚇 {item.metro}</span>
+                      <span className="branch-metro"><img className="metro-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/28/Metro_Tbilisi_logo.svg" alt="მეტრო" width="20" height="20" />{item.metro}</span>
                       <span>განაცხადის შევსება →</span>
                       </span>
                     </button>
